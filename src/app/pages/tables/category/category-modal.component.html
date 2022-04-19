@@ -1,0 +1,59 @@
+<!-- Edit Or Delete -->
+<form #aliciEditOrDelete="ngForm" (ngSubmit)="onSubmit(aliciEditOrDelete.value)" *ngIf="item.categoryID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="CategoryName" style="color: black;" class="control-label">Category Name</label>
+                <input [ngModel]="item.categoryName" style="color:black;" maxlength="30" type="text" name="CategoryName"
+                    class="form-control" required minlength="2" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="description" class="control-label">Description</label>
+                <input [ngModel]="item.address" maxlength="100" type="text" ngModel class="form-control"
+                    name="description" ngModel>
+            </div>
+            <!-- Delete Process -->
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Category Name</span> :
+                    {{item.categoryName}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Description</span> : {{item.description}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group" *ngIf="!deleteProcess && item.aliciID">
+            <input type="submit" name="Guncelleme" id="update" value="Guncelle" class="btn btn-success">
+        </div>
+
+        <div class="form-group" *ngIf="deleteProcess">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+ 
+<!-- Post -->
+<form #aliciPost="ngForm" (ngSubmit)="onPostSubmit(aliciPost.value)" *ngIf="!item.categoryID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.categoryID">
+                <label style="color: black;" for="categoryName" class="control-label">Category Name</label>
+                <input maxlength="30" style="color: black;" type="text" name="categoryName" class="form-control"
+                    #minL="ngModel" required minlength="2" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label style="color: black;" for="description" class="control-label">Description</label>
+                <input style="color: black;" maxlength="100" type="text" ngModel class="form-control" name="description"
+                    ngModel>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Ekleme" id="add" value="Ekle" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>

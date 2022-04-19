@@ -1,0 +1,53 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new Category</h4>
+        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <app-category-modal (newItemEvent)="getCategories()"></app-category-modal>
+</ng-template>
+<div class="card">
+    <div class="container-fluid">
+        <div class="card-header">
+            <h3><a (click)="openXl(content)"
+                    style="text-decoration: none;color: lightblue;cursor: pointer;padding: 0.5em;">Add Category</a></h3>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>EDIT</th>
+                    <th>CATEGORY NAME</th>
+                    <th>DESCRIPTION</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of categories">
+                    <td>{{category.categoryID}}</td>
+                    <td>
+                        <button class=" btn btn-primary btn-icon btn-round" href="javascript:void(0)">
+                            <i class="tim-icons icon-alert-circle-exc"> </i>
+                        </button>
+                    </td>
+                    <td>{{category.categoryName}}</td>
+                    <td>{{category.description}}</td>
+                    <td>
+                        <button class="btn btn-round" (click)="openXl(deleteContent)"><i
+                                class="tim-icons icon-simple-remove"></i></button>
+                        <ng-template #deleteContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn" aria-label="Close"
+                                    (click)="modal.dismiss('Cross click')"></button>
+                            </div>
+                            <app-category-modal [deleteProcess]="true" [item]="category"
+                                (newItemEvent)="getCategories()"></app-category-modal>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

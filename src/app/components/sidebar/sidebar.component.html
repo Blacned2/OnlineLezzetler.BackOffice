@@ -1,0 +1,22 @@
+<div class="logo">
+  <a href="" class="simple-text logo-mini">
+    <div class="logo-img">
+      <img src="./assets/img/angular2-logo-white.png" />
+    </div>
+  </a>
+  <a href="" class="simple-text logo-normal">
+    Back Office
+  </a>
+</div>
+<div class="sidebar-wrapper"> 
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="nav-item menu-open">
+        <a [routerLink]="[menuItem.path]" class="nav-link">
+          <i class="tim-icons {{menuItem.icon}}"></i> 
+          <p>{{menuItem.title}}</p>
+        </a>  
+      </li>
+    </ul>
+  </nav> 
+</div>
