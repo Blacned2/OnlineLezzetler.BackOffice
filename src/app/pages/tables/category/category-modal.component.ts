@@ -22,11 +22,15 @@ export class CategoryModalComponent implements OnInit {
   categoryUrl = 'https://localhost:44310/api/Category/';
 
   onSubmit(data: Category) {
-    if (data.categoryID > 0 && data.categoryName !== '' && data.description !== '') {
-      this.httpClient.put<Category>(this.categoryUrl + this.item.categoryID, data).subscribe(() => {
-        this.modalService.dismissAll();
-        this.newItemEvent.emit();
-      })
+    if (this.item.categoryID > 0 && this.item.categoryName !== '' && this.item.description !== '') {
+      if(data.categoryName !== '' && data.description !== '') {
+        this.httpClient.put<Category>(this.categoryUrl + this.item.categoryID, data).subscribe((result) => {
+          this.modalService.dismissAll();
+          this.newItemEvent.emit();
+        }) 
+      }else{
+        alert('Not allowed to leave it as empty')
+      }
     } else {
       if (this.deleteProcess == true) {
         this.httpClient.delete(this.categoryUrl + this.item.categoryID).subscribe(() => {
@@ -34,7 +38,7 @@ export class CategoryModalComponent implements OnInit {
           this.newItemEvent.emit();
         })
       } else {
-        alert('Sa');
+        alert(`Does'nt fount !`);
       }
     }
   }
@@ -46,7 +50,7 @@ export class CategoryModalComponent implements OnInit {
           this.modalService.dismissAll();
           this.newItemEvent.emit();
         })
-      }else{
+      } else {
         alert('You did not fill correctly')
       }
     }
