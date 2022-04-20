@@ -10,6 +10,7 @@ import { IconsComponent } from "./pages/icons/icons.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { TableComponent } from "./pages/tables/tables.component";
 import { CategoryComponent } from "./pages/tables/category/category.component";
+import { CityComponent } from "./pages/tables/city/city.component";
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   {
     path: "tables", component: TableComponent, children: [
       { path:'',component:CategoryComponent},
-      { path: "categories", component: CategoryComponent },
+      { path: "categories", component: CategoryComponent }, 
+      { path: "cities", component: CityComponent }, 
     ]
   },
 

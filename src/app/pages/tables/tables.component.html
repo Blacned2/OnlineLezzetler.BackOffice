@@ -1,0 +1,41 @@
+<div class="content">
+    <div class="row g-0 m-0 p-0">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <div class="card">
+                <ngb-carousel [showNavigationIndicators]="false" [interval]="100000">
+                    <ng-template ngbSlide>
+                        <ul class="nav nav-pills nav-sidebar d-flex"
+                            style="justify-content: center;flex-wrap: nowrap;overflow:hidden;align-items: center;"
+                            data-widget="treeview" role="menu" data-accordion="false">
+                            <li routerLinkActive="active" class="nav-item menu-open p-1 d-flex"
+                                style="flex-wrap: nowrap;" *ngFor="let table of tables1">
+                                <a class="nav-link d-flex"
+                                    style="align-items: center;border:1px solid black;background-color: blueviolet;"
+                                    [routerLink]="[table.path]">
+                                    <i class="tim-icons m-1 {{table.icon}}"></i>
+                                    <p class="p-0 m-0 g-0 m-1">{{table.label}}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-template>
+                    <ng-template ngbSlide>
+                        <ul class="nav nav-pills nav-sidebar d-flex"
+                            style="justify-content: center;flex-wrap: nowrap;overflow:hidden;align-items: center;"
+                            data-widget="treeview" role="menu" data-accordion="false">
+                            <li routerLinkActive="active" class="nav-item menu-open p-1 d-flex"
+                                style="flex-wrap: nowrap;" *ngFor="let table of tables2">
+                                <a class="nav-link d-flex"
+                                    style="align-items: center;border:1px solid black;background-color: blueviolet;"
+                                    [routerLink]="[table.path]">
+                                    <i class="tim-icons m-1 {{table.icon}}"></i>
+                                    <p class="p-0 m-0 g-0 m-1">{{table.label}}</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

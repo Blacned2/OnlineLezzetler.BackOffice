@@ -1,0 +1,66 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new City</h4>
+        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <app-city-modal (newItemEvent)="getCategories()"></app-city-modal>
+</ng-template>
+<div class="card">
+    <div class="container-fluid">
+        <div class="card-header">
+            <h3><a (click)="openXl(content)"
+                    style="text-decoration: none;color: blueviolet;cursor: pointer;padding: 0.5em;">Add City</a></h3>
+            <div class="row">
+                
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>EDIT</th>
+                    <th>REGION</th>
+                    <th>CITY NAME</th>
+                    <th>POSTAL CODE</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let city of cities">
+                    <td>{{city.cityID}}</td>
+                    <td>
+                        <button (click)="openXl(editContent)" class=" btn btn-primary btn-icon btn-round"
+                            href="javascript:void(0)">
+                            <i class="tim-icons icon-alert-circle-exc"> </i></button>
+                        <ng-template #editContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-city-modal [deleteProcess]="false" [item]="city" (newItemEvent)="getCities()">
+                            </app-city-modal>
+                        </ng-template>
+                    </td>
+                    <td>{{city.regionName}}</td>
+                    <td>{{city.cityName}}</td>
+                    <td>{{city.postalCode}}</td>
+                    <td>
+                        <button class="btn btn-round" (click)="openXl(deleteContent)"><i
+                                class="tim-icons icon-simple-remove"></i></button>
+                        <ng-template #deleteContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-city-modal [deleteProcess]="true" [item]="city" (newItemEvent)="getCities()">
+                            </app-city-modal>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

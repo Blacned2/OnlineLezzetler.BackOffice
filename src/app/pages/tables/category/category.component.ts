@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/models/category';
@@ -10,9 +10,9 @@ import { Category } from 'src/app/models/category';
 })
 export class CategoryComponent implements OnInit {
 
-  closeResult: string; 
+  closeResult: string;
 
-  catId:number = 0;
+  catId: number = 0; 
 
   categoryUrl = 'https://localhost:44310/api/Category/';
 
@@ -20,28 +20,29 @@ export class CategoryComponent implements OnInit {
 
   categories: Category[] = [];
 
-  singleCategory:Category = {categoryID:0,categoryName:'',description:''};
+  singleCategory: Category = { categoryID: 0, categoryName: '', description: '' };
 
   ngOnInit(): void {
     this.getCategories();
   }
-  
-  getCategories(){
+
+  getCategories() {
     this.httpClient.get<Category[]>(this.categoryUrl).subscribe((data) => {
       this.categories = data;
     });
   }
 
-  openWindowCustomClass(content,id:number) {
+  openWindowCustomClass(content, id: number) {
 
-    this.modalService.open(content, { windowClass: 'dark-modal',animation:true });
-    this.httpClient.get<Category>(this.categoryUrl+id).subscribe(data=>{
+    this.modalService.open(content, { windowClass: 'dark-modal', animation: true });
+    this.httpClient.get<Category>(this.categoryUrl + id).subscribe(data => {
       this.singleCategory = data;
       this.catId = id;
     });
-  } 
+  }
 
   openXl(content) {
     this.modalService.open(content, { size: 'xl' });
   }
+ 
 }

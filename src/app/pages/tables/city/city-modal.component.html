@@ -1,0 +1,77 @@
+<form #cityEditOrDelete="ngForm" (ngSubmit)="onSubmit(cityEditOrDelete.value)" *ngIf="item.cityID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="cityName" style="color: black;" class="control-label">City Name</label>
+                <input [ngModel]="item.cityName" style="color:black;" maxlength="30" type="text" name="cityName"
+                    class="form-control" required minlength="2" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="regionName" class="control-label">Region Name</label>
+                <input [ngModel]="item.regionName" style="color:black;" maxlength="100" type="text" ngModel
+                    class="form-control" name="regionName" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="postalCode" class="control-label">Region Name</label>
+                <input [ngModel]="item.postalCode" style="color:black;" maxlength="100" type="text" ngModel
+                    class="form-control" name="postalCode" ngModel>
+            </div>
+            <!-- Delete Process -->
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>ID</span> : {{item.cityID}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>City Name</span> : {{item.cityName}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Region Name</span> : {{item.regionName}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Postal Code</span> : {{item.postalCode}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group" *ngIf="!deleteProcess && item.aliciID != 0">
+            <input type="submit" name="Update" id="update" value="Update" class="btn btn-success">
+        </div>
+        <div class="form-group" *ngIf="!deleteProcess && item.aliciID != 0">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+        <div class="form-group" *ngIf="deleteProcess">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+
+<!-- Post -->
+<form #cityPost="ngForm" (ngSubmit)="onPostSubmit(cityPost.value)" *ngIf="!item.cityID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.cityID">
+                <label style="color: black;" for="cityName" class="control-label">City Name</label>
+                <input maxlength="30" style="color: black;" type="text" name="cityName" class="form-control"
+                    #minL="ngModel" required minlength="2" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label style="color: black;" for="regionName" class="control-label">Region Name</label>
+                <input style="color: black;" maxlength="100" type="text" ngModel class="form-control" name="regionName"
+                    ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label style="color: black;" for="postalCode" class="control-label">Postal Code</label>
+                <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="postalCode"
+                    ngModel>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Add" id="add" value="Add" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>
