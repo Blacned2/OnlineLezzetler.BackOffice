@@ -1,0 +1,179 @@
+<form #supplierEditOrDelete="ngForm" (ngSubmit)="onSubmit(supplierEditOrDelete.value)" *ngIf="item.supplierID && !deleteProcess">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-6 g-0 m-0 p-0">
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="companyName" style="color: black;" class="control-label">Company Name*</label>
+                    <input [ngModel]="item.companyName" style="color:black;" maxlength="30" type="text"
+                        name="companyName" class="form-control" required minlength="2" ngModel>
+                </div>
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="contactName" class="control-label">Contact Name*</label>
+                    <input [ngModel]="item.contactName" style="color:black;" maxlength="100" type="text" ngModel
+                        class="form-control" name="contactName" ngModel>
+                </div>
+            </div>
+            <div class="col-md-6 g-0 m-0 p-0">
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="address" class="control-label">Address*</label>
+                    <input [ngModel]="item.address" style="color:black;" maxlength="100" type="text" ngModel
+                        class="form-control" name="address" ngModel>
+                </div>
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="phone" class="control-label">Phone*</label>
+                    <input [ngModel]="item.phone" style="color:black;" maxlength="100" type="text" ngModel
+                        class="form-control" name="phone" ngModel>
+                </div>
+            </div>
+            <div class="col-md-6 g-0 p-0 m-0">
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="fax" class="control-label">Fax</label>
+                    <input [ngModel]="item.fax" style="color:black;" maxlength="100" type="text" ngModel
+                        class="form-control" name="Fax" ngModel>
+                </div>
+                <div class="form-group mt-3 p-1" *ngIf="!deleteProcess">
+                    <label for="homePage" class="control-label">Home Page</label>
+                    <input [ngModel]="item.homePage" style="color:black;" maxlength="100" type="text" ngModel
+                        class="form-control" name="homePage" ngModel>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group" *ngIf="!deleteProcess">
+                <input type="submit" name="Update" id="update" value="Update" class="btn btn-success">
+            </div>
+            <div class="form-group" *ngIf="!deleteProcess">
+                <button type="button" class="btn btn-secondary " aria-label="Close"
+                    (click)="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Delete Process -->
+<form #supplierDelete="ngForm" (ngSubmit)="onDelete(supplierDelete.value)" *ngIf="deleteProcess">
+    <div class="modal-body">
+        <div class="row">
+            <div class="form-group mt-3 col-12">
+                <label style="color:black" class="form-control col-3"><span>ID</span> : {{item.supplierID}}</label>
+            </div>
+            <div class="form-group mt-3 col-6">
+                <label style="color:black" class="form-control"><span>Company Name</span> : {{item.companyName}}</label>
+            </div>
+            <div class="form-group mt-3 col-6">
+                <label style="color:black" class="form-control"><span>Contact Name</span> : {{item.contactName}}</label>
+            </div>
+            <div class="form-group mt-3 col-12">
+                <label style="color:black" class="form-control"><span>Address</span> : {{item.address}}</label>
+            </div>
+            <div class="form-group mt-3 col-4">
+                <label style="color:black" class="form-control"><span>Phone</span> : {{item.phone}}</label>
+            </div>
+            <div class="form-group mt-3 col-3" *ngIf="item.fax">
+                <label style="color:black" class="form-control"><span>Fax</span> : {{item.fax}}</label>
+            </div>
+            <div class="form-group mt-3 col-5" *ngIf="item.homePage">
+                <label style="color:black" class="form-control"><span>Home Page</span> : {{item.homePage}}</label>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal-footer"> 
+            <div class="form-group col-3">
+                <input type="submit" value="Sil" class="btn btn-danger" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Post -->
+<form #supplierPost="ngForm" (ngSubmit)="onPostSubmit(supplierPost.value)" *ngIf="!item.supplierID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.supplierID">
+                <div class="form-group mt-3" *ngIf="!deleteProcess && !item.supplierID">
+                    <div class="col-12 p-1">
+                        <div class="container-fluid">
+                            <mat-label>Country</mat-label>
+                        </div>
+                        <select class="form-select bg-white col-3" style="z-index: 1!important;" name="countryName"
+                            id="countryID" [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
+                            <option disabled>Choose a country</option>
+                            <option *ngFor="let country of countries" [value]="country.countryID">
+                                {{country.countryName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12 p-1" *ngIf="selectedCountryID">
+                        <div class="container-fluid">
+                            <mat-label>Region</mat-label>
+                        </div>
+                        <select class="form-select bg-white col-3" name="regionDescription" id="regionID"
+                            [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                            <option disabled>Choose a region</option>
+                            <option *ngFor="let region of regions" [value]="region.regionID">
+                                {{region.regionDescription}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-12 p-1" *ngIf="selectedRegionID">
+                        <div class="container-fluid">
+                            <mat-label>City</mat-label>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <select class="col-3 bg-white form-select" [(ngModel)]="selectedCityID">
+                                <option disabled>Choose a city</option>
+                                <option *ngFor="let city of cities" [value]="city.cityID">
+                                    {{city.cityName}}
+                                </option>
+                            </select>
+                            <button *ngIf="selectedCityID" mat-raised-button color="primary"
+                                (click)="getSuppliers()">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess && !item.supplierID">
+                    <label style="color: black;" for="companyName" class="control-label">Company Name*</label>
+                    <input maxlength="30" style="color: black;" type="text" name="companyName" class="form-control"
+                        #minL="ngModel" required minlength="2" ngModel>
+                </div>
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess">
+                    <label style="color: black;" for="contactName" class="control-label">Contact Name*</label>
+                    <input style="color: black;" maxlength="10" type="text" ngModel class="form-control"
+                        name="contactName" ngModel>
+                </div>
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess">
+                    <label style="color: black;" for="address" class="control-label">Address</label>
+                    <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="address"
+                        ngModel>
+                </div>
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess">
+                    <label style="color: black;" for="phone" class="control-label">Phone</label>
+                    <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="phone"
+                        ngModel>
+                </div>
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess">
+                    <label style="color: black;" for="fax" class="control-label">Fax</label>
+                    <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="fax"
+                        ngModel>
+                </div>
+                <div class="form-group mt-3 col-6" *ngIf="!deleteProcess">
+                    <label style="color: black;" for="homePage" class="control-label">Home Page</label>
+                    <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="homePage"
+                        ngModel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Add" id="add" value="Add" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>

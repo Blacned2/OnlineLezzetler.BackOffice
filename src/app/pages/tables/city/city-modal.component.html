@@ -5,12 +5,7 @@
                 <label for="cityName" style="color: black;" class="control-label">City Name</label>
                 <input [ngModel]="item.cityName" style="color:black;" maxlength="30" type="text" name="cityName"
                     class="form-control" required minlength="2" ngModel>
-            </div>
-            <div class="form-group mt-3" *ngIf="!deleteProcess">
-                <label for="regionName" class="control-label">Region Name</label>
-                <input [ngModel]="item.regionName" style="color:black;" maxlength="100" type="text" ngModel
-                    class="form-control" name="regionName" ngModel>
-            </div>
+            </div> 
             <div class="form-group mt-3" *ngIf="!deleteProcess">
                 <label for="postalCode" class="control-label">Region Name</label>
                 <input [ngModel]="item.postalCode" style="color:black;" maxlength="100" type="text" ngModel
@@ -32,10 +27,10 @@
         </div>
     </div>
     <div class="modal-footer">
-        <div class="form-group" *ngIf="!deleteProcess && item.aliciID != 0">
+        <div class="form-group" *ngIf="!deleteProcess">
             <input type="submit" name="Update" id="update" value="Update" class="btn btn-success">
         </div>
-        <div class="form-group" *ngIf="!deleteProcess && item.aliciID != 0">
+        <div class="form-group" *ngIf="!deleteProcess">
             <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
         </div>
         <div class="form-group" *ngIf="deleteProcess">
@@ -47,17 +42,31 @@
 <!-- Post -->
 <form #cityPost="ngForm" (ngSubmit)="onPostSubmit(cityPost.value)" *ngIf="!item.cityID">
     <div class="modal-body">
-        <div class="col-md-12 g-0 m-0 p-0">
+        <div class="col-md-12 g-0 m-0 p-0"> 
+                <div class="form-group mt-3" *ngIf="!deleteProcess && !item.cityID">
+                    <h5 class="text-dark mb-0">Select a country</h5>
+                    <select class="form-select" name="countryName" id="countryID" [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
+                        <option disabled>Choose country</option>
+                        <option  *ngFor="let country of countries" [value]="country.countryID">
+                            {{country.countryName}}
+                        </option>
+                    </select>
+                </div> 
+                <div class="form-group mt-3" *ngIf="!deleteProcess && !item.cityID">
+                    <h5 *ngIf="regions" class="text-dark mb-0">Select a region</h5>
+                    <select class="form-select" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                        <option disabled>Choose region</option>
+                        <option *ngFor="let region of regions" [value]="region.regionID">
+                            {{region.regionDescription}}
+                        </option>
+                    </select>
+                </div>   
+
             <div class="form-group mt-3" *ngIf="!deleteProcess && !item.cityID">
                 <label style="color: black;" for="cityName" class="control-label">City Name</label>
                 <input maxlength="30" style="color: black;" type="text" name="cityName" class="form-control"
                     #minL="ngModel" required minlength="2" ngModel>
-            </div>
-            <div class="form-group mt-3" *ngIf="!deleteProcess">
-                <label style="color: black;" for="regionName" class="control-label">Region Name</label>
-                <input style="color: black;" maxlength="100" type="text" ngModel class="form-control" name="regionName"
-                    ngModel>
-            </div>
+            </div> 
             <div class="form-group mt-3" *ngIf="!deleteProcess">
                 <label style="color: black;" for="postalCode" class="control-label">Postal Code</label>
                 <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="postalCode"

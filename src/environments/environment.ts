@@ -3,7 +3,14 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  cityUrl: 'https://localhost:44310/api/City/GetCityListByRegionID?id=',
+  countryUrl: 'https://localhost:44310/api/Country/',
+  regionUrl: 'https://localhost:44310/api/Region/GetByCountryID?id=',
+  categoryUrl: 'https://localhost:44310/api/Category/',
+  regionPostUrl: 'https://localhost:44310/api/Region/',
+  supplierGetUrl: 'https://localhost:44310/api/Supplier/ByCityID?id=',
+  supplierUrl: 'https://localhost:44310/api/Supplier/',
 };
 
 /*

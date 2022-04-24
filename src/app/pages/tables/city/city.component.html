@@ -4,7 +4,7 @@
         <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
             (click)="modal.dismiss('Cross click')">X</button>
     </div>
-    <app-city-modal (newItemEvent)="getCategories()"></app-city-modal>
+    <app-city-modal (newItemEvent)="getCities()"></app-city-modal>
 </ng-template>
 <div class="card">
     <div class="container-fluid">
@@ -12,7 +12,22 @@
             <h3><a (click)="openXl(content)"
                     style="text-decoration: none;color: blueviolet;cursor: pointer;padding: 0.5em;">Add City</a></h3>
             <div class="row">
-                
+                <!-- <ng-select [items]="countries" (change)="getRegions()" class="form-control col-3 text-white" bindLabel="countryName" autofocus
+                    bindValue="countryID" [(ngModel)]="selectedCountryID">
+                </ng-select> -->
+                <!-- <ng-select *ngIf="selectedCountryID" (change)="getCities()" [items]="regions" class="form-control col-3 text-white" bindLabel="regionDescription" autofocus
+                    bindValue="regionID" [(ngModel)]="selectedRegionID">
+                </ng-select> --> 
+                <select class="form-select p-1 col-3" name="countryName" id="countryID" [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
+                    <option *ngFor="let country of countries" [value]="country.countryID">
+                        {{country.countryName}}
+                    </option>
+                </select>
+                <select class="form-select p-1 col-3" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                    <option *ngFor="let region of regions" [value]="region.regionID">
+                        {{region.regionDescription}}
+                    </option>
+                </select>
             </div>
         </div>
         <table class="table">

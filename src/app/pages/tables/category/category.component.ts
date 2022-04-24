@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/models/category';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-category',
@@ -12,9 +13,7 @@ export class CategoryComponent implements OnInit {
 
   closeResult: string;
 
-  catId: number = 0; 
-
-  categoryUrl = 'https://localhost:44310/api/Category/';
+  catId: number = 0;  
 
   constructor(private httpClient: HttpClient, private modalService: NgbModal) { }
 
@@ -27,7 +26,7 @@ export class CategoryComponent implements OnInit {
   }
 
   getCategories() {
-    this.httpClient.get<Category[]>(this.categoryUrl).subscribe((data) => {
+    this.httpClient.get<Category[]>(environment.categoryUrl).subscribe((data) => {
       this.categories = data;
     });
   }
@@ -35,7 +34,7 @@ export class CategoryComponent implements OnInit {
   openWindowCustomClass(content, id: number) {
 
     this.modalService.open(content, { windowClass: 'dark-modal', animation: true });
-    this.httpClient.get<Category>(this.categoryUrl + id).subscribe(data => {
+    this.httpClient.get<Category>(environment.categoryUrl + id).subscribe(data => {
       this.singleCategory = data;
       this.catId = id;
     });

@@ -1,9 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
 import { City } from 'src/app/models/city';
 import { Country } from 'src/app/models/country';
 import { Region } from 'src/app/models/region';
+import { CityService } from 'src/app/services/city.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-city',
@@ -11,52 +14,46 @@ import { Region } from 'src/app/models/region';
 })
 export class CityComponent implements OnInit {
 
-  constructor(private httpClient: HttpClient, private modalService: NgbModal) { }
+  constructor(
+    private httpClient: HttpClient,
+    private modalService: NgbModal,
+    private cityService: CityService
+  ) { }
 
-  switcher: boolean = true;
+  selectedCountryID: number;
 
-  searchString: string | unknown;
-
-  searchedCountries: Country[] = null;
-
-  searchedRegions: Region[];
-
-  selectedCountry:number;
-
-  selectedRegion: number;
+  selectedRegionID: number;
 
   countries: Country[];
 
   regions: Region[];
 
-  cities: City[];
-
-  cityUrl: string = 'https://localhost:44310/api/City/';
-
-  countryUrl: string = 'https://localhost:44310/api/Country/';
-
-  regionSrcUrl: string = 'https://localhost:44310/api/Region/Search';
+  cities: City[]; 
 
   ngOnInit(): void {
-    this.getCities();
     this.getCountries();
   }
 
+
   getCities() {
-    this.httpClient.get<City[]>(this.cityUrl).subscribe((data) => {
+    this.cities = null;
+    this.httpClient.get<City[]>(environment.cityUrl+this.selectedRegionID).subscribe((data) => {
       this.cities = data;
     })
   } 
-
+ 
   getCountries() {
-    this.httpClient.get<Country[]>(this.countryUrl).subscribe((data) => {
+    this.httpClient.get<Country[]>(environment.countryUrl).subscribe((data) => {
       this.countries = data;
     })
   }
 
-  getRegions(number:number) {
-    this.httpClient.post<Region[]>(this.regionSrcUrl,number).subscribe((data) => {
-      this.regions = data; 
+
+  getRegions() {
+    this.regions = null;
+    this.httpClient.get<Region[]>(environment.regionUrl + this.selectedCountryID).subscribe(data => {
+      this.regions = data;
+      console.log(this.regions)
     })
   }
 

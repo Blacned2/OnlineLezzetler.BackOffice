@@ -11,6 +11,9 @@ import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 import { TableComponent } from "./pages/tables/tables.component";
 import { CategoryComponent } from "./pages/tables/category/category.component";
 import { CityComponent } from "./pages/tables/city/city.component";
+import { RegionsComponent } from "./pages/tables/regions/regions.component";
+import { CountryComponent } from "./pages/tables/country/country.component";
+import { SupplierComponent } from "./pages/tables/supplier/supplier.component";
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -21,6 +24,9 @@ const routes: Routes = [
       { path:'',component:CategoryComponent},
       { path: "categories", component: CategoryComponent }, 
       { path: "cities", component: CityComponent }, 
+      { path: "regions", component: RegionsComponent }, 
+      { path: "countries", component: CountryComponent }, 
+      { path: "suppliers", component: SupplierComponent }, 
     ]
   },
 

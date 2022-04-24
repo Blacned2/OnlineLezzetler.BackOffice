@@ -1,0 +1,112 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new Supplier</h4>
+        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <app-supplier-modal [country]="countries" (newItemEvent)="getSuppliers()"></app-supplier-modal>
+</ng-template>
+<div class="card">
+    <div class="container-fluid">
+        <div class="card-header">
+            <h3><a (click)="openXl(content)"
+                    style="text-decoration: none;color: blueviolet;cursor: pointer;padding: 0.5em;">Add Supplier</a>
+            </h3>
+            <div class="row">
+                <div class="col-12 p-1">
+                    <div class="container-fluid">
+                        <mat-label>Country</mat-label>
+                    </div>
+                    <mat-select class="form-control bg-white col-3" name="countryName" id="countryID"
+                        [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
+                        <mat-option disabled>Choose a country</mat-option>
+                        <mat-option *ngFor="let country of countries" [value]="country.countryID">
+                            {{country.countryName}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="col-12 p-1" *ngIf="selectedCountryID">
+                    <div class="container-fluid">
+                        <mat-label>Region</mat-label>
+                    </div>
+                    <mat-select class="form-control bg-white col-3" name="regionDescription" id="regionID"
+                        [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                        <mat-option disabled>Choose a region</mat-option>
+                        <mat-option *ngFor="let region of regions" [value]="region.regionID">
+                            {{region.regionDescription}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+                <div class="col-12 p-1" *ngIf="selectedRegionID">
+                    <div class="container-fluid">
+                        <mat-label>City</mat-label>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <mat-select class="col-3 bg-white form-control" [(ngModel)]="selectedCityID">
+                            <mat-option disabled>Choose a city</mat-option>
+                            <mat-option *ngFor="let city of cities" [value]="city.cityID">
+                                {{city.cityName}}
+                            </mat-option>
+                        </mat-select>
+                        <button style="margin-left: 10px;" *ngIf="selectedCityID" mat-raised-button color="primary"
+                            (click)="getSuppliers()">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                    <th>COMPANY</th>
+                    <th>CONTACT NAME</th>
+                    <th>ADDRESS</th>
+                    <th>PHONE</th>
+                    <th>FAX</th>
+                    <th>HOMEPAGE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let supplier of suppliers;let i = index">
+                    <td>{{i+1}}</td>
+                    <td>
+                        <button (click)="openXl(editContent)" class=" btn btn-primary btn-icon btn-round"
+                            href="javascript:void(0)">
+                            <i class="tim-icons icon-alert-circle-exc"> </i>
+                        </button> 
+                        <ng-template #editContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Screen</h4>
+                                <button type="button" class="btn d-flex" style="align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-supplier-modal [deleteProcess]="false" [item]="supplier" (newItemEvent)="getCities()">
+                            </app-supplier-modal>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <button class="btn btn-round btn-icon" (click)="openXl(deleteContent)"><i
+                                class="tim-icons icon-simple-remove"></i></button>
+                        <ng-template #deleteContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-supplier-modal [deleteProcess]="true" [item]="supplier" (newItemEvent)="getRegions()">
+                            </app-supplier-modal>
+                        </ng-template>
+                    </td>
+                    <td>{{supplier.companyName}}</td>
+                    <td>{{supplier.contactName}}</td>
+                    <td>{{supplier.address}}</td>
+                    <td>{{supplier.phone}}</td>
+                    <td>{{supplier.fax}}</td>
+                    <td>{{supplier.homepage}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

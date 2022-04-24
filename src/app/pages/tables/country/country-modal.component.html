@@ -1,0 +1,65 @@
+<form #countryEditOrDelete="ngForm" (ngSubmit)="onSubmit(countryEditOrDelete.value)" *ngIf="item.countryID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="countryName" style="color: black;" class="control-label">Country Name</label>
+                <input [ngModel]="item.countryName" style="color:black;" maxlength="30" type="text" name="countryName"
+                    class="form-control" required minlength="2" ngModel>
+            </div> 
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label for="countryShortName" class="control-label">Country Short Name</label>
+                <input [ngModel]="item.countryShortName" style="color:black;" maxlength="100" type="text" ngModel
+                    class="form-control" name="countryShortName" ngModel>
+            </div>
+            
+            <!-- Delete Process -->
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>ID</span> : {{item.countryID}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Country Name</span> : {{item.countryName}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Country Short Name</span> : {{item.countryShortName}}</label>
+            </div> 
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group" *ngIf="!deleteProcess">
+            <input type="submit" name="Update" id="update" value="Update" class="btn btn-success">
+        </div>
+        <div class="form-group" *ngIf="!deleteProcess">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+        <div class="form-group" *ngIf="deleteProcess">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+
+<!-- Post -->
+<form #countryPost="ngForm" (ngSubmit)="onPostSubmit(countryPost.value)" *ngIf="!item.countryID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">    
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.countryID">
+                <label style="color: black;" for="countryName" class="control-label">Country Name</label>
+                <input maxlength="30" style="color: black;" type="text" name="countryName" class="form-control"
+                    #minL="ngModel" required minlength="2" ngModel>
+            </div> 
+            <div class="form-group mt-3" *ngIf="!deleteProcess">
+                <label style="color: black;" for="countryShortName" class="control-label">Country Short Name</label>
+                <input style="color: black;" maxlength="10" type="text" ngModel class="form-control" name="countryShortName"
+                    ngModel>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Add" id="add" value="Add" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>

@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, ViewChild } from '@angular/core'; 
 
 @Component({
     selector: 'app-table-list',

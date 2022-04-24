@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Category } from 'src/app/models/category';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-category-modal',
@@ -17,14 +18,12 @@ export class CategoryModalComponent implements OnInit {
   constructor(private httpClient: HttpClient, private modalService: NgbModal) { }
 
   ngOnInit(): void {
-  }
-
-  categoryUrl = 'https://localhost:44310/api/Category/';
-
+  } 
+  
   onSubmit(data: Category) {
     if (this.item.categoryID > 0 && this.item.categoryName !== '' && this.item.description !== '') {
       if(data.categoryName !== '' && data.description !== '') {
-        this.httpClient.put<Category>(this.categoryUrl + this.item.categoryID, data).subscribe((result) => {
+        this.httpClient.put<Category>(environment.categoryUrl + this.item.categoryID, data).subscribe((result) => {
           this.modalService.dismissAll();
           this.newItemEvent.emit();
         }) 
@@ -33,7 +32,7 @@ export class CategoryModalComponent implements OnInit {
       }
     } else {
       if (this.deleteProcess == true) {
-        this.httpClient.delete(this.categoryUrl + this.item.categoryID).subscribe(() => {
+        this.httpClient.delete(environment.categoryUrl + this.item.categoryID).subscribe(() => {
           this.modalService.dismissAll();
           this.newItemEvent.emit();
         })
@@ -46,7 +45,7 @@ export class CategoryModalComponent implements OnInit {
   onPostSubmit(data: Category) {
     if (this.item.categoryID == null) {
       if (data.categoryName !== '' && data.description !== '') {
-        this.httpClient.post(this.categoryUrl, data).subscribe(() => {
+        this.httpClient.post(environment.categoryUrl, data).subscribe(() => {
           this.modalService.dismissAll();
           this.newItemEvent.emit();
         })

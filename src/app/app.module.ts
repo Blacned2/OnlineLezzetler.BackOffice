@@ -1,12 +1,13 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { LoaderInterceptor } from './interceptors/loader.interceptor'
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from "./app.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { NgSelectModule} from '@ng-select/ng-select'
+import { NgSelectModule } from '@ng-select/ng-select'
 import { AppRoutingModule } from "./app-routing.module";
 import { ComponentsModule } from "./components/components.module";
 import { CommonModule } from "@angular/common";
@@ -21,7 +22,16 @@ import { CategoryModalComponent } from './pages/tables/category/category-modal.c
 import { TableComponent } from './pages/tables/tables.component';
 import { CityComponent } from './pages/tables/city/city.component';
 import { CityModalComponent } from './pages/tables/city/city-modal.component';
-
+import { RegionsComponent } from './pages/tables/regions/regions.component';
+import { RegionsModalComponent } from './pages/tables/regions/regions-modal.component';
+import { CountryComponent } from './pages/tables/country/country.component';
+import { CountryModalComponent } from './pages/tables/country/country-modal.component';
+import { SupplierComponent } from './pages/tables/supplier/supplier.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { SupplierModalComponent } from './pages/tables/supplier/supplier-modal.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   imports: [
@@ -34,6 +44,10 @@ import { CityModalComponent } from './pages/tables/city/city-modal.component';
     RouterModule,
     AppRoutingModule,
     NgSelectModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot()
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -49,8 +63,15 @@ import { CityModalComponent } from './pages/tables/city/city-modal.component';
     TableComponent,
     CityComponent,
     CityModalComponent,
+    RegionsComponent,
+    RegionsModalComponent,
+    CountryComponent,
+    CountryModalComponent,
+    SupplierComponent,
+    SupplierModalComponent,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true, },
     { provide: LocationStrategy, useClass: PathLocationStrategy }
   ],
   bootstrap: [AppComponent]
