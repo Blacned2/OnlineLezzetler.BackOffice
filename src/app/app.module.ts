@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { LoaderInterceptor } from './interceptors/loader.interceptor'
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from "./app.component";
@@ -31,7 +30,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { SupplierModalComponent } from './pages/tables/supplier/supplier-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EmployeeComponent } from './pages/tables/employee/employee.component'
 
 @NgModule({
   imports: [
@@ -69,9 +69,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     CountryModalComponent,
     SupplierComponent,
     SupplierModalComponent,
+    EmployeeComponent,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true, },
     { provide: LocationStrategy, useClass: PathLocationStrategy }
   ],
   bootstrap: [AppComponent]

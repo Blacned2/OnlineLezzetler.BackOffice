@@ -7,7 +7,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { FooterComponent } from "./footer/footer.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { SidebarComponent } from "./sidebar/sidebar.component";
-import { LoaderComponent } from './loader/loader.component';
+
 
 @NgModule({
   imports: [
@@ -16,7 +16,7 @@ import { LoaderComponent } from './loader/loader.component';
     NgbModule,
     MatProgressSpinnerModule,
   ],
-  declarations: [FooterComponent, NavbarComponent, SidebarComponent, LoaderComponent],
+  declarations: [FooterComponent, NavbarComponent, SidebarComponent],
   exports: [FooterComponent, NavbarComponent, SidebarComponent]
 })
 export class ComponentsModule { }

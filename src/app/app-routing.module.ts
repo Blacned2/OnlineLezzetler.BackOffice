@@ -14,6 +14,7 @@ import { CityComponent } from "./pages/tables/city/city.component";
 import { RegionsComponent } from "./pages/tables/regions/regions.component";
 import { CountryComponent } from "./pages/tables/country/country.component";
 import { SupplierComponent } from "./pages/tables/supplier/supplier.component";
+import { EmployeeComponent } from "./pages/tables/employee/employee.component";
 
 const routes: Routes = [
   { path: "dashboard", component: DashboardComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: "regions", component: RegionsComponent }, 
       { path: "countries", component: CountryComponent }, 
       { path: "suppliers", component: SupplierComponent }, 
+      { path: "employees", component: EmployeeComponent }, 
     ]
   },
 
