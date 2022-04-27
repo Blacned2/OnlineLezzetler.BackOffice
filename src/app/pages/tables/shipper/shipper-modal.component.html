@@ -1,0 +1,45 @@
+<form #shipperDelete="ngForm" (ngSubmit)="onSubmit(shipperDelete.value)" *ngIf="item.shipperID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <!-- Delete Process -->
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Unique ID</span> : {{item.shipperID}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Phone</span> :
+                    {{item.phone}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group" *ngIf="deleteProcess">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+<!-- Post -->
+<form #shipperPost="ngForm" (ngSubmit)="onSubmit(shipperPost.value)" *ngIf="!item.shipperID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0"> 
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.regionID">
+                <label style="color: black;" for="companyName" class="control-label">Company Name</label>
+                <input maxlength="30" style="color: black;" type="text" name="companyName" class="form-control"
+                    #minL="ngModel" required minlength="2" ngModel>
+            </div>
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.regionID">
+                <label style="color: black;" for="phone" class="control-label">Phone</label>
+                <input maxlength="30" style="color: black;" type="text" name="phone" class="form-control"
+                    #minL="ngModel" required minlength="2" ngModel>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Add" id="add" value="Add" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>

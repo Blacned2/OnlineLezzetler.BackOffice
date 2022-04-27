@@ -1,7 +1,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Add new City</h4>
-        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+        <button type="button" class="btn d-flex" style="height: 3em;align-items: center" aria-label="Close"
             (click)="modal.dismiss('Cross click')">X</button>
     </div>
     <app-city-modal (newItemEvent)="getCities()"></app-city-modal>
@@ -18,16 +18,22 @@
                 <!-- <ng-select *ngIf="selectedCountryID" (change)="getCities()" [items]="regions" class="form-control col-3 text-white" bindLabel="regionDescription" autofocus
                     bindValue="regionID" [(ngModel)]="selectedRegionID">
                 </ng-select> --> 
-                <select class="form-select p-1 col-3" name="countryName" id="countryID" [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
-                    <option *ngFor="let country of countries" [value]="country.countryID">
+                <div class="container-fluid">
+                    <mat-label>Country</mat-label>
+                </div>
+                <mat-select class="form-control col-3 bg-white" name="countryName" id="countryID" [(ngModel)]="selectedCountryID" (ngModelChange)="getRegions()">
+                    <mat-option *ngFor="let country of countries" [value]="country.countryID">
                         {{country.countryName}}
-                    </option>
-                </select>
-                <select class="form-select p-1 col-3" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
-                    <option *ngFor="let region of regions" [value]="region.regionID">
+                    </mat-option>
+                </mat-select>
+                <div class="container-fluid" *ngIf="selectedCountryID">
+                    <mat-label>Region</mat-label>
+                </div>
+                <mat-select class="form-control col-3 bg-white" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                    <mat-option *ngFor="let region of regions" [value]="region.regionID">
                         {{region.regionDescription}}
-                    </option>
-                </select>
+                    </mat-option>
+                </mat-select>
             </div>
         </div>
         <table class="table">
@@ -51,7 +57,7 @@
                         <ng-template #editContent let-modal>
                             <div class="modal-header">
                                 <h4 class="modal-title">Delete Screen</h4>
-                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
                                     aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
                             </div>
                             <app-city-modal [deleteProcess]="false" [item]="city" (newItemEvent)="getCities()">
@@ -67,7 +73,7 @@
                         <ng-template #deleteContent let-modal>
                             <div class="modal-header">
                                 <h4 class="modal-title">Delete Screen</h4>
-                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
                                     aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
                             </div>
                             <app-city-modal [deleteProcess]="true" [item]="city" (newItemEvent)="getCities()">

@@ -1,7 +1,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Add new Supplier</h4>
-        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+        <button type="button" class="btn d-flex" style="height: 3em;align-items: center" aria-label="Close"
             (click)="modal.dismiss('Cross click')">X</button>
     </div>
     <app-supplier-modal [country]="countries" (newItemEvent)="getSuppliers()"></app-supplier-modal>
@@ -92,7 +92,7 @@
                         <ng-template #deleteContent let-modal>
                             <div class="modal-header">
                                 <h4 class="modal-title">Delete Screen</h4>
-                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
                                     aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
                             </div>
                             <app-supplier-modal [deleteProcess]="true" [item]="supplier" (newItemEvent)="getRegions()">
@@ -104,7 +104,7 @@
                     <td>{{supplier.address}}</td>
                     <td>{{supplier.phone}}</td>
                     <td>{{supplier.fax}}</td>
-                    <td>{{supplier.homepage}}</td>
+                    <td>{{supplier.homePage}}</td>
                 </tr>
             </tbody>
         </table>

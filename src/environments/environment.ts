@@ -7,11 +7,13 @@ export const environment = {
   countryUrl: 'https://localhost:44310/api/Country/',
   regionUrl: 'https://localhost:44310/api/Region/GetByCountryID?id=',
   cityUrl: 'https://localhost:44310/api/City/GetCityListByRegionID?id=',
+  cityPostUrl:'https://localhost:44310/api/City/',
   categoryUrl: 'https://localhost:44310/api/Category/',
   regionPostUrl: 'https://localhost:44310/api/Region/',
   supplierGetUrl: 'https://localhost:44310/api/Supplier/ByCityID?id=',
   supplierUrl: 'https://localhost:44310/api/Supplier/',
   employeeUrl:'https://localhost:44310/api/Employee/', 
+  shipperUrl:'https://localhost:44310/api/Shipper/',
 
 };
 

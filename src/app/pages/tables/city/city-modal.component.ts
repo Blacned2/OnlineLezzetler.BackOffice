@@ -57,7 +57,7 @@ export class CityModalComponent implements OnInit {
     if (this.item.cityID == null) {
       data.regionID = this.selectedRegionID;
       if (data.cityName !== '' && data.postalCode !== '' && data.regionID != null) {
-        this.httpClient.post(environment.cityUrl, data).subscribe(() => {
+        this.httpClient.post(environment.cityPostUrl, data).subscribe(() => {
           this.modalService.dismissAll();
           this.newItemEvent.emit();
         })
@@ -84,8 +84,7 @@ export class CityModalComponent implements OnInit {
   getRegions(){
     this.regions = null;
     this.httpClient.get<Region[]>(environment.regionUrl+this.selectedCountryID).subscribe(data=>{
-      this.regions = data; 
-      console.log(this.regions)
+      this.regions = data;  
     })
   }
 }

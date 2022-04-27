@@ -52,8 +52,7 @@ export class CityComponent implements OnInit {
   getRegions() {
     this.regions = null;
     this.httpClient.get<Region[]>(environment.regionUrl + this.selectedCountryID).subscribe(data => {
-      this.regions = data;
-      console.log(this.regions)
+      this.regions = data; 
     })
   }
 

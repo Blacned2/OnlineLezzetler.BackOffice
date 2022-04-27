@@ -31,7 +31,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { SupplierModalComponent } from './pages/tables/supplier/supplier-modal.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { EmployeeComponent } from './pages/tables/employee/employee.component'
+import { EmployeeComponent } from './pages/tables/employee/employee.component';
+import { EmployeeModalComponent } from './pages/tables/employee/employee-modal.component';
+import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
+import { ShipperComponent } from './pages/tables/shipper/shipper.component';
+import { ShipperModalComponent } from './pages/tables/shipper/shipper-modal.component'; 
 
 @NgModule({
   imports: [
@@ -47,6 +51,7 @@ import { EmployeeComponent } from './pages/tables/employee/employee.component'
     MatSelectModule,
     MatButtonModule,
     MatDialogModule,
+    MdbModalModule,
     MatProgressSpinnerModule,
     ToastrModule.forRoot()
   ],
@@ -70,6 +75,9 @@ import { EmployeeComponent } from './pages/tables/employee/employee.component'
     SupplierComponent,
     SupplierModalComponent,
     EmployeeComponent,
+    EmployeeModalComponent,
+    ShipperComponent,
+    ShipperModalComponent, 
   ],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy }

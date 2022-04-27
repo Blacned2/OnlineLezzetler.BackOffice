@@ -1,0 +1,172 @@
+<form #countryEditOrDelete="ngForm" (ngSubmit)="onSubmit(countryEditOrDelete.value)" *ngIf="item.employeeID">
+    <div class="modal-body">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 g-0 m-0 p-0">
+                        <div class="form-group col-md-12 g-0 m-0 p-0 mt-3" *ngIf="!deleteProcess">
+                            <label for="firstName" style="color: black;" class="control-label">First Name</label>
+                            <input [ngModel]="item.firstName" style="color:black;" maxlength="30" type="text" name="firstName"
+                                class="form-control" required minlength="2" ngModel>
+                        </div> 
+                        <div class="form-group col-md-12 g-0 m-0 p-0 mt-3" *ngIf="!deleteProcess">
+                            <label for="lastName" style="color: black;" class="control-label">Surname</label>
+                            <input [ngModel]="item.lastName" style="color:black;" maxlength="30" type="text" name="lastName"
+                                class="form-control" required minlength="2" ngModel>
+                        </div> 
+                        <div class="g-0 m-0 p-0 col-md-5">
+        
+                        </div>
+                        <div class="form-group g-0 m-0 p-0 col-md-12 p-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="title" class="control-label">Title*</label>
+                            <input [ngModel]="item.title" style="color: black;background-color: lightyellow;" maxlength="10" type="text" class="form-control" name="title"
+                                ngModel>
+                        </div>
+                        <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="salary" class="control-label">Salary ($)</label>
+                            <input style="color: black;" maxlength="10" type="number" ngModel class="form-control" name="salary"
+                                [ngModel]="item.salary">
+                        </div>
+                        <div class="col-md-6">
+        
+                        </div>
+                        <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="birthDate" class="control-label">Birthdate*</label>
+                            <input style="color: black;background-color: lightgray;" disabled maxlength="10" type="text" ngModel class="form-control"
+                                name="birthDate" [ngModel]="item.birthDate">
+                        </div>
+                        <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="address" class="control-label">Address*</label> 
+                            <textarea class="form-control" style="color:black;background-color: lightgray;" name="address" id="eAddress" cols="30" rows="3" [ngModel]="item.address"></textarea>
+                        </div>
+                    </div> 
+                    <div class="col-md-6 g-0 m-0 ps-1">
+                        <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="phone" class="control-label">Phone*</label>
+                            <input style="color: black;background-color: lightgray;" maxlength="10" type="text" ngModel class="form-control"
+                                name="phone" [ngModel]="item.phone">
+                        </div>
+                        <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                            <label style="color: black;" for="notes" class="control-label">Notes</label> 
+                            <textarea class="form-control" style="color:black;background-color: lightgray;" name="notes" id="eAddress" cols="30" rows="5" [ngModel]="item.notes"></textarea>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+
+            <!-- Delete Process -->
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>ID</span> : {{item.employeeID}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Name</span> : {{item.firstName}} {{item.lastName}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Title</span> :
+                    {{item.title}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Salary</span> :
+                    {{item.salary}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Birthdate</span> :
+                    {{item.birthDate}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Hired Date</span> :
+                    {{item.hiredDate}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Address</span> :
+                    {{item.address}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Phone</span> :
+                    {{item.phone}}</label>
+            </div>
+            <div class="form-group mt-3" *ngIf="deleteProcess">
+                <label style="color:black" class="form-control"><span>Notes</span> :
+                    {{item.notes}}</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="form-group" *ngIf="!deleteProcess">
+            <input type="submit" name="Update" id="update" value="Update" class="btn btn-success">
+        </div>
+        <div class="form-group" *ngIf="!deleteProcess">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+        <div class="form-group" *ngIf="deleteProcess">
+            <input type="submit" value="Sil" class="btn btn-danger" />
+        </div>
+    </div>
+</form>
+
+<!-- Post -->
+<form #countryPost="ngForm" (ngSubmit)="onPostSubmit(countryPost.value)" *ngIf="!item.employeeID">
+    <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 g-0 m-0 p-0">
+                    <div class="form-group col-md-12 g-0 m-0 p-0 mt-3" *ngIf="!deleteProcess && !item.employeeID">
+                        <label style="color: black;" for="firstName" class="control-label">First Name*</label>
+                        <input maxlength="30" style="color: black;" type="text" name="firstName" class="form-control"
+                            #minL="ngModel" required minlength="2" ngModel>
+                    </div>
+                    <div class="form-group col-md-12 g-0 m-0 p-0 mt-3" *ngIf="!deleteProcess && !item.employeeID">
+                        <label style="color: black;" for="lastName" class="control-label">Surname*</label>
+                        <input maxlength="30" style="color: black;" type="text" name="lastName" class="form-control"
+                            #minL="ngModel" required minlength="2" ngModel>
+                    </div>
+                    <div class="g-0 m-0 p-0 col-md-5">
+    
+                    </div>
+                    <div class="form-group g-0 m-0 p-0 col-md-12 p-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="title" class="control-label">Title*</label>
+                        <input style="color: black;background-color: lightyellow;" maxlength="10" type="text" ngModel class="form-control" name="title"
+                            ngModel>
+                    </div>
+                    <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="salary" class="control-label">Salary ($)</label>
+                        <input style="color: black;" maxlength="10" type="number" ngModel class="form-control" name="salary"
+                            ngModel>
+                    </div>
+                    <div class="col-md-6">
+    
+                    </div>
+                    <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="birthDate" class="control-label">Birthdate*</label>
+                        <input style="color: black;background-color: lightgray;" maxlength="10" type="date" ngModel class="form-control"
+                            name="birthDate" ngModel>
+                    </div>
+                    <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="address" class="control-label">Address*</label> 
+                        <textarea class="form-control" style="color:black;background-color: lightgray;" name="address" id="eAddress" cols="30" rows="3" ngModel></textarea>
+                    </div>
+                </div> 
+                <div class="col-md-6 g-0 m-0 ps-1">
+                    <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="phone" class="control-label">Phone*</label>
+                        <input style="color: black;background-color: lightgray;" maxlength="10" type="text" ngModel class="form-control"
+                            name="phone" ngModel>
+                    </div>
+                    <div class="form-group col-md-12 p-0 g-0 m-0 mt-3" *ngIf="!deleteProcess">
+                        <label style="color: black;" for="notes" class="control-label">Notes</label> 
+                        <textarea class="form-control" style="color:black;background-color: lightgray;" name="notes" id="eAddress" cols="30" rows="5" ngModel></textarea>
+                    </div>
+                </div>
+            </div> 
+        </div> 
+    </div>
+    <div class="modal-footer">
+        <div class="form-group">
+            <input type="submit" name="Add" id="add" value="Add" class="btn btn-primary">
+            <input type="reset" value="Reset" class="btn btn-warning ms-2 me-2">
+        </div>
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary " aria-label="Close" (click)="closeModal()">Close</button>
+        </div>
+    </div>
+</form>

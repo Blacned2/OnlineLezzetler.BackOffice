@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Employee } from 'src/app/models/employee';
 import { environment } from 'src/environments/environment';
 
@@ -9,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,private modalService:NgbModal) { }
 
   employees: Employee[] = [];
 
@@ -24,6 +25,6 @@ export class EmployeeComponent implements OnInit {
   }
 
   openXl(content){
-    
+    this.modalService.open(content,{size:'lg',scrollable:true});
   }
 }

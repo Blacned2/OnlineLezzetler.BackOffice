@@ -1,7 +1,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Add new Country</h4>
-        <button type="button" class="btn d-flex" style="height: 10%;align-items: center" aria-label="Close"
+        <button type="button" class="btn d-flex" style="height: 3em;align-items: center" aria-label="Close"
             (click)="modal.dismiss('Cross click')">X</button>
     </div>
     <app-country-modal (newItemEvent)="getCountries()"></app-country-modal>
@@ -32,7 +32,7 @@
                         <ng-template #editContent let-modal>
                             <div class="modal-header">
                                 <h4 class="modal-title">Edit Screen</h4>
-                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
                                     aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
                             </div>
                             <app-country-modal [deleteProcess]="false" [item]="country" (newItemEvent)="getCities()">
@@ -47,7 +47,7 @@
                         <ng-template #deleteContent let-modal>
                             <div class="modal-header">
                                 <h4 class="modal-title">Delete Screen</h4>
-                                <button type="button" class="btn d-flex" style="height: 10%;align-items: center"
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
                                     aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
                             </div>
                             <app-country-modal [deleteProcess]="true" [item]="country" (newItemEvent)="getCities()">

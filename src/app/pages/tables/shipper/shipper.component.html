@@ -1,0 +1,46 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new Shipper</h4>
+        <button type="button" class="btn d-flex" style="height: 3em;align-items: center" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <app-shipper-modal (newItemEvent)="getShippers()"></app-shipper-modal>
+</ng-template>
+<div class="card">
+    <div class="container-fluid">
+        <div class="card-header">
+            <h3><a (click)="openXl(content)"
+                    style="text-decoration: none;color: blueviolet;cursor: pointer;padding: 0.5em;">Add Shipper</a></h3> 
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-1">#</th> 
+                    <th class="col-6">COMPANY</th>
+                    <th class="col-3">PHONE</th>
+                    <th class="col-2">DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let shipper of shippers;let i = index">
+                    <td class="col-1">{{i+1}}</td> 
+                    <td class="col-6">{{shipper.companyName}}</td> 
+                    <td class="col-3">{{shipper.phone}}</td>
+                    <td class="col-2">
+                        <button class="btn btn-round" (click)="openXl(deleteContent)"><i
+                                class="tim-icons icon-simple-remove"></i></button>
+                        <ng-template #deleteContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-shipper-modal [deleteProcess]="true" [item]="shipper" (newItemEvent)="getShippers()">
+                            </app-shipper-modal>
+                        </ng-template>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

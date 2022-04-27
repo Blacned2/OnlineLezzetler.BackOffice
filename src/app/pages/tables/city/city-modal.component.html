@@ -54,7 +54,7 @@
                 </div> 
                 <div class="form-group mt-3" *ngIf="!deleteProcess && !item.cityID">
                     <h5 *ngIf="regions" class="text-dark mb-0">Select a region</h5>
-                    <select class="form-select" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID" (ngModelChange)="getCities()">
+                    <select class="form-select" *ngIf="regions"name="regionDescription" id="regionID" [(ngModel)]="selectedRegionID">
                         <option disabled>Choose region</option>
                         <option *ngFor="let region of regions" [value]="region.regionID">
                             {{region.regionDescription}}
