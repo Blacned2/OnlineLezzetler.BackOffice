@@ -1,0 +1,64 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Add new Product</h4>
+        <button type="button" class="btn d-flex" style="height: 3em;align-items: center" aria-label="Close"
+            (click)="modal.dismiss('Cross click')">X</button>
+    </div>
+    <app-employee-modal (newItemEvent)="getProducts()"></app-employee-modal>
+</ng-template>
+<div class="card">
+    <div class="container-fluid"> 
+        <div class="card-header">
+            <h3><a (click)="openXl(content)"
+                    style="text-decoration: none;color: darkcyan;cursor: pointer;padding: 0.5em;">Add Product</a></h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                    <th>PRODUCT</th>
+                    <th>UNIT PRICE</th>
+                    <th>UNIT IN STOCK</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of products">
+                    <td>{{employee.employeeID}}</td>
+                    <td>
+                        <button (click)="openXl(editContent)" class=" btn btn-primary btn-icon btn-round"
+                            href="javascript:void(0)">
+                            <i class="tim-icons icon-alert-circle-exc"> </i></button>
+                        <ng-template #editContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Edit Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-employee-modal [deleteProcess]="false" [item]="employee" (newItemEvent)="getCities()">
+                            </app-employee-modal>
+                        </ng-template>
+                    </td>
+                    <td>
+                        <button class="btn btn-icon btn-round" (click)="openXl(deleteContent)"><i
+                                class="tim-icons icon-simple-remove"></i></button>
+                        <ng-template #deleteContent let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Delete Screen</h4>
+                                <button type="button" class="btn d-flex" style="height: 3em;align-items: center"
+                                    aria-label="Close" (click)="modal.dismiss('Cross click')">X</button>
+                            </div>
+                            <app-employee-modal [deleteProcess]="true" [item]="employee" (newItemEvent)="getCities()">
+                            </app-employee-modal>
+                        </ng-template>
+                    </td>
+                    <td>{{employee.firstName}}</td>
+                    <td>{{employee.lastName}}</td>
+                    <td>{{employee.title}}</td>
+                    <td>{{employee.salary}}</td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

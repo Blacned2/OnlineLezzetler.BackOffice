@@ -14,6 +14,8 @@ export const environment = {
   supplierUrl: 'https://localhost:44310/api/Supplier/',
   employeeUrl:'https://localhost:44310/api/Employee/', 
   shipperUrl:'https://localhost:44310/api/Shipper/',
+  productUrl:'',
+  productPostUrl:'',
 
 };
 

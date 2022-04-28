@@ -20,13 +20,13 @@
 <!-- Post -->
 <form #shipperPost="ngForm" (ngSubmit)="onSubmit(shipperPost.value)" *ngIf="!item.shipperID">
     <div class="modal-body">
-        <div class="col-md-12 g-0 m-0 p-0"> 
-            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.regionID">
+        <div class="col-md-12 g-0 m-0 p-0">
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.shipperID">
                 <label style="color: black;" for="companyName" class="control-label">Company Name</label>
                 <input maxlength="30" style="color: black;" type="text" name="companyName" class="form-control"
                     #minL="ngModel" required minlength="2" ngModel>
             </div>
-            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.regionID">
+            <div class="form-group mt-3" *ngIf="!deleteProcess && !item.shipperID">
                 <label style="color: black;" for="phone" class="control-label">Phone</label>
                 <input maxlength="30" style="color: black;" type="text" name="phone" class="form-control"
                     #minL="ngModel" required minlength="2" ngModel>

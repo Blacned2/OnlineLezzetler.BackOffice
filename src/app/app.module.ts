@@ -35,7 +35,8 @@ import { EmployeeComponent } from './pages/tables/employee/employee.component';
 import { EmployeeModalComponent } from './pages/tables/employee/employee-modal.component';
 import { MdbModalModule } from 'mdb-angular-ui-kit/modal';
 import { ShipperComponent } from './pages/tables/shipper/shipper.component';
-import { ShipperModalComponent } from './pages/tables/shipper/shipper-modal.component'; 
+import { ShipperModalComponent } from './pages/tables/shipper/shipper-modal.component';
+import { ProductComponent } from './pages/tables/product/product.component'; 
 
 @NgModule({
   imports: [
@@ -77,7 +78,8 @@ import { ShipperModalComponent } from './pages/tables/shipper/shipper-modal.comp
     EmployeeComponent,
     EmployeeModalComponent,
     ShipperComponent,
-    ShipperModalComponent, 
+    ShipperModalComponent,
+    ProductComponent, 
   ],
   providers: [
     { provide: LocationStrategy, useClass: PathLocationStrategy }
